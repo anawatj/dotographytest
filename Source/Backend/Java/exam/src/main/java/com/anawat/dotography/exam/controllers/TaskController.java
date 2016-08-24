@@ -69,6 +69,29 @@ public class TaskController {
 		return ret;
 	}
 	@CrossOrigin
+	@RequestMapping(value="/set",method=RequestMethod.POST)
+	@Transactional
+	public @ResponseBody HashMap<String,Object> set(@RequestBody List<Task> entities)
+	{
+	HashMap<String,Object> ret=  new HashMap<String,Object>();
+		
+		try
+		{
+			 for(Task entity :entities)
+			 {
+				 taskRepository.save(entity);
+			 }
+			 ret.put("result",ResponseResult.Success);
+			 ret.put("message",ResponseResult.Success.toString());
+		}catch(Exception ex)
+		{
+			ret.put("result",ResponseResult.Fail);
+			ret.put("message",ex.getMessage());
+		}
+		return ret;
+	}
+	
+	@CrossOrigin
 	@RequestMapping(value="/remove" ,method=RequestMethod.POST)
 	@Transactional
 	public @ResponseBody HashMap<String,Object> remove(@RequestBody List<Task> tasks)
