@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+	<class name="com.anawat.dotography.exam.domain.task.Task" table="tbl_t_task"
+		schema="dotography">
+		<id name="id" column="id" type="integer">
+			<generator class="sequence">
+				<param name="sequence">dotography.tbl_t_task_seq</param>
+			</generator>
+		</id>
+		<version name="version" column="version"></version>
+		<property name="taskName" column="task_name" length="200"></property>
+		<property name="subject" column="subject" length="100"></property>
+		<many-to-one name="assignee"
+			class="com.anawat.dotography.exam.domain.user.User" column="assignee_id"
+			foreign-key="fk_task_assignee" not-found="ignore" lazy="proxy"></many-to-one>
+		<many-to-one name="assigner"
+			class="com.anawat.dotography.exam.domain.user.User" column="assigner_id"
+			foreign-key="fk_task_assigner" not-found="ignore" lazy="proxy"></many-to-one>
+		<property name="status" column="task_status" length="100">
+			<type name="org.hibernate.type.EnumType">
+				<param name="enumClass">com.anawat.dotography.exam.domain.task.TaskStatus</param>
+				<param name="type">12</param>
+
+			</type>
+		</property>
+		<property name="remark" column="remark" length="2000"></property>
+		<property name="taskDetail" column="task_detail" length="1000"></property>
+		<set name="subtasks" cascade="all-delete-orphan" lazy="true">
+				<key column="parent_task_id" foreign-key="fk_task_subtask"></key>
+				<one-to-many class="com.anawat.dotography.exam.domain.task.Task" not-found="ignore" />
+				
+		</set>
+		<property name="createdBy" column="created_by" length="20"></property>
+		<property name="createdDate" column="created_date"></property>
+		<property name="updatedBy" column="updated_by" length="20"></property>
+		<property name="updatedDate" column="updated_date"></property>
+	</class>
+</hibernate-mapping>
