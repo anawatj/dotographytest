@@ -35,5 +35,10 @@
 		<property name="createdDate" column="created_date"></property>
 		<property name="updatedBy" column="updated_by" length="20"></property>
 		<property name="updatedDate" column="updated_date"></property>
+		
+		<property name="taskDate" column="task_date"></property>
+		<property name="assignDate" column="assign_date"></property>
+		<property name="finishDate" column="finish_date"></property>
+		
 	</class>
 </hibernate-mapping>

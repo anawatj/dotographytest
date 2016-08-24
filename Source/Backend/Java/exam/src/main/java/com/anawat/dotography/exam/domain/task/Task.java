@@ -1,5 +1,6 @@
 package com.anawat.dotography.exam.domain.task;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -24,7 +25,28 @@ public class Task extends AbstractDomain<Integer> {
 
 	private String remark;
 	private String taskDetail;
+	private Date taskDate;
+	private Date assignDate;
+	private Date finishDate;
 	
+	public Date getTaskDate() {
+		return taskDate;
+	}
+	public void setTaskDate(Date taskDate) {
+		this.taskDate = taskDate;
+	}
+	public Date getAssignDate() {
+		return assignDate;
+	}
+	public void setAssignDate(Date assignDate) {
+		this.assignDate = assignDate;
+	}
+	public Date getFinishDate() {
+		return finishDate;
+	}
+	public void setFinishDate(Date finishDate) {
+		this.finishDate = finishDate;
+	}
 	public String getTaskDetail() {
 		return taskDetail;
 	}

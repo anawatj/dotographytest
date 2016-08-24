@@ -8,6 +8,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,14 +27,14 @@ public class TaskController {
 	@Autowired(required=true)
 	private ITaskRepository taskRepository;
 	
-	
+	@CrossOrigin
 	@RequestMapping(value="/tasks",method=RequestMethod.GET)
 	@Transactional
 	public @ResponseBody List<Task> getAll()
 	{
 		return taskRepository.findAll();
 	}
-	
+	@CrossOrigin
 	@RequestMapping(value="/tasks/{id}",method=RequestMethod.GET)
 	@Transactional
 	public @ResponseBody Task getOne(@PathVariable Integer id)
@@ -47,7 +48,7 @@ public class TaskController {
 			return new Task();
 		}
 	}
-	
+	@CrossOrigin
 	@RequestMapping(value="/save",method=RequestMethod.POST)
 	@Transactional
 	public @ResponseBody HashMap<String ,Object> save(@RequestBody Task entity)
@@ -67,7 +68,7 @@ public class TaskController {
 		}
 		return ret;
 	}
-	
+	@CrossOrigin
 	@RequestMapping(value="/remove" ,method=RequestMethod.POST)
 	@Transactional
 	public @ResponseBody HashMap<String,Object> remove(@RequestBody List<Task> tasks)
