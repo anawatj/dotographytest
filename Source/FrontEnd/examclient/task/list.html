@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Task</title>
+	<link rel="stylesheet" type="text/css" href="./bootstrap/css/bootstrap.min.css">
+	<script type="text/javascript" src="./plugins/jQuery/jQuery-2.2.0.min.js"></script>
+	<script type="text/javascript" src="./bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="./angular/angular.min.js"></script>
+	<script type="text/javascript" src="./task/app.js"></script>
+</head>
+<body ng-app="exam">
+		<div ng-controller="taskListCtrl" ng-init="init()">
+				<table class="table table-bordered">
+						<thead>
+							
+							<tr>
+									<th><input type="checkbox"/></th>
+									<th></th>
+									<th>TaskName</th>
+									<th>Subject</th>
+									<th>TaskDetail</th>
+									<th>TaskDate</th>
+									<th>Status</th>
+							</tr>
+						</thead>
+						<tbody>
+							
+							<tr ng-repeat="item in results">
+								
+								<td><input type="checkbox" ng-model="item.selected"  /></td>
+								<td><button class="btn btn-default" ng-click="edit(item.id)">Edit</button></td>
+								<td>{{item.taskName}}</td>
+								<td>{{item.subject}}</td>
+								<td>{{item.taskDetail}}</td>
+								<td>{{item.taskDate | 'dd/MM/yyyy'}}</td>
+								<td>{{item.status}}</td>
+							</tr>
+						</tbody>
+				</table>
+				<button class="btn btn-default" ng-click="remove()">Delete</button>
+				<button class="btn btn-default" ng-click="changeStatus('pending')">pending</button>
+				<button class="btn btn-default" ng-click="changeStatus('done')">done</button>
+		</div>
+</body>
+</html>

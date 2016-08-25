@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Task</title>
+	<link rel="stylesheet" type="text/css" href="./bootstrap/css/bootstrap.min.css">
+	<script type="text/javascript" src="./plugins/jQuery/jQuery-2.2.0.min.js"></script>
+	<script type="text/javascript" src="./bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="./angular/angular.min.js"></script>
+	<script type="text/javascript" src="./task/app.js"></script>
+</head>
+<body ng-app="exam">
+		<div ng-controller="taskEntryCtrl" ng-init="init()">
+				<form>
+						<div class="row">
+								<div class="col-xs-3">
+										<label>TaskName</label>
+								</div>
+									<div class="col-xs-6">
+										<input type="text" class="form-control"/>
+								</div>
+						</div>
+						<div class="row">
+								<div class="col-xs-3">
+										<label>TaskDesc</label>
+								</div>
+									<div class="col-xs-6">
+										<textarea class="form-control"></textarea>
+								</div>
+						</div>
+						<div class="row">
+								<div class="col-xs-3">
+										<label>TaskDate</label>
+								</div>
+									<div class="col-xs-6">
+										<input type="date" class="form-control"/>
+								</div>
+						</div>
+						<div class="row">
+								<div class="col-xs-3">
+										<label>AssignDate</label>
+								</div>
+									<div class="col-xs-6">
+										<input type="date" class="form-control"/>
+								</div>
+						</div>
+						<div class="row">
+								<div class="col-xs-3">
+										<label>FinishDate</label>
+								</div>
+									<div class="col-xs-6">
+										<input type="date" class="form-control"/>
+								</div>
+						</div>
+						<div class="row">
+								<div class="col-xs-3">
+										<label>Subject</label>
+								</div>
+									<div class="col-xs-6">
+										<input type="text" class="form-control"/>
+								</div>
+						</div>
+						<div class="row">
+								<div class="col-xs-3">
+										<label>Remark</label>
+								</div>
+									<div class="col-xs-6">
+										<textarea class="form-control"></textarea>
+								</div>
+						</div>
+						<div class="row">
+								<table class="table table-bordered">
+										<thead>
+											
+											<tr>
+													<th><input type="checkbox" /></th>
+													<th>TaskName</th>
+													<th>Subject</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr ng-repeat="item in model.subitems">
+												
+												<td><input type="checkbox" ng-model="item.selected"/></td>
+												<td><input type="text" class="form-control" ng-model="item.taskName"/></td>
+												<td><input type="text" class="form-control" ng-model="item.subject"/></td>
+											</tr>
+										</tbody>
+										<tfoot>
+											
+											<tr>
+													<td colspan="3">
+														
+														<button class="btn btn-default">Add</button>
+														<button class="btn btn-default">Remove</button>
+													</td>
+											</tr>
+										</tfoot>
+								</table>
+						</div>
+						<div class="row">
+								<button class="btn btn-default">Save</button>
+						</div>
+				</form>
+		</div>
+</body>
+</html>
