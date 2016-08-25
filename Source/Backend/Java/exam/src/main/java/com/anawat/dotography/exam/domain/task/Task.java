@@ -14,27 +14,31 @@ public class Task extends AbstractDomain<Integer> {
 	
 	public Task()
 	{
-		this.subtasks= new HashSet<Task>();
+		this.items = new HashSet<TaskItem>();
 	}
 	private String taskName;
 	private String subject;
 	private TaskStatus status;
 	private User assignee;
 	private User assigner;
-	private Set<Task> subtasks;
+	
 
 	private String remark;
 	private String taskDetail;
 	private Date taskDate;
 	private Date assignDate;
 	private Date finishDate;
-	private Integer parentId;
+	private Set<TaskItem> items;
 	
-	public Integer getParentId() {
-		return parentId;
+	
+	
+	
+	
+	public Set<TaskItem> getItems() {
+		return items;
 	}
-	public void setParentId(Integer parentId) {
-		this.parentId = parentId;
+	public void setItems(Set<TaskItem> items) {
+		this.items = items;
 	}
 	public Date getTaskDate() {
 		return taskDate;
@@ -111,12 +115,6 @@ public class Task extends AbstractDomain<Integer> {
 	}
 	public void setAssigner(User assigner) {
 		this.assigner = assigner;
-	}
-	public Set<Task> getSubtasks() {
-		return subtasks;
-	}
-	public void setSubtasks(Set<Task> subtasks) {
-		this.subtasks = subtasks;
 	}
 	
 	

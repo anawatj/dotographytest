@@ -24,7 +24,6 @@ public class TaskRepository implements ITaskRepository {
 	public List<Task> findAll() {
 			
 		Criteria criteria = factory.getCurrentSession().createCriteria(Task.class);
-		criteria.add(Restrictions.isNull("parentId"));
 		return criteria.list();
 	}
 
@@ -32,7 +31,7 @@ public class TaskRepository implements ITaskRepository {
 		Criteria criteria =factory.getCurrentSession().createCriteria(Task.class);
 		criteria.setFetchMode("assignee", FetchMode.JOIN);
 		criteria.setFetchMode("assigner",FetchMode.JOIN);
-		criteria.setFetchMode("subtasks",FetchMode.JOIN);
+		criteria.setFetchMode("items",FetchMode.JOIN);
 		
 		criteria.add(Restrictions.eq("id",id));
 		
@@ -76,7 +75,7 @@ public class TaskRepository implements ITaskRepository {
 		}
 		if(entity.getStatus()==TaskStatus.Done || entity.getStatus()==TaskStatus.Pending)
 		{
-			entity.setSubtasks(data.getSubtasks());
+			entity.setItems(data.getItems());
 		}
 		Task result = (Task) factory.getCurrentSession().merge(entity);
 		return result;
