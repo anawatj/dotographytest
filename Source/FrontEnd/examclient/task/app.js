@@ -115,7 +115,7 @@ app.controller('taskEntryCtrl',function($scope,$http, params)
 						for(var index=0;index<$scope.model.items.length;index++)
 						{
 							var item = $scope.model.items[index];
-							item..selected=false;
+							item.selected=false;
 						}
 
 				});
