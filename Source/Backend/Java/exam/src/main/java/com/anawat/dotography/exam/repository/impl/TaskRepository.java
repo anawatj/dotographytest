@@ -1,5 +1,6 @@
 package com.anawat.dotography.exam.repository.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Criteria;
@@ -76,6 +77,14 @@ public class TaskRepository implements ITaskRepository {
 		if(entity.getStatus()==TaskStatus.Done || entity.getStatus()==TaskStatus.Pending)
 		{
 			entity.setItems(data.getItems());
+		}
+		if(entity.getStatus()==TaskStatus.Pending)
+		{
+			entity.setAssignDate(new Date());
+		}
+		if(entity.getStatus()==TaskStatus.Done)
+		{
+			entity.setFinishDate(new Date());
 		}
 		Task result = (Task) factory.getCurrentSession().merge(entity);
 		return result;
