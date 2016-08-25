@@ -39,6 +39,7 @@
 		<property name="taskDate" column="task_date"></property>
 		<property name="assignDate" column="assign_date"></property>
 		<property name="finishDate" column="finish_date"></property>
+		<property name="parentId" column="parent_task_id"></property>
 		
 	</class>
 </hibernate-mapping>

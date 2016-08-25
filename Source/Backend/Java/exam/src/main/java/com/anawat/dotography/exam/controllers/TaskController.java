@@ -40,13 +40,13 @@ public class TaskController {
 	public @ResponseBody Task getOne(@PathVariable Integer id)
 	{
 		
-		try
+		Task task = taskRepository.findByKey(id);
+		if(task==null)
 		{
-			return taskRepository.findByKey(id);
-		}catch(Exception ex)
-		{
-			return new Task();
+			task = new Task();
+			
 		}
+		return task;
 	}
 	@CrossOrigin
 	@RequestMapping(value="/save",method=RequestMethod.POST)

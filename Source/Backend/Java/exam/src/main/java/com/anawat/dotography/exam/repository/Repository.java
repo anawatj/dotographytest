@@ -11,7 +11,7 @@ public interface Repository<E extends IDomain<K> ,K extends Serializable> {
 	
 			List<E> findAll();
 			E findByKey(K id);
-			E save(E entity);
+			E save(E entity) throws Exception;
 			void remove(K id);
 			
 }

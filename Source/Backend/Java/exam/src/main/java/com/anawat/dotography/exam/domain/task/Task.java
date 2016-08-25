@@ -28,7 +28,14 @@ public class Task extends AbstractDomain<Integer> {
 	private Date taskDate;
 	private Date assignDate;
 	private Date finishDate;
+	private Integer parentId;
 	
+	public Integer getParentId() {
+		return parentId;
+	}
+	public void setParentId(Integer parentId) {
+		this.parentId = parentId;
+	}
 	public Date getTaskDate() {
 		return taskDate;
 	}

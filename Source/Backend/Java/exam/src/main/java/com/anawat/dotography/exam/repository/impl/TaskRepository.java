@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import com.anawat.dotography.exam.domain.task.Task;
+import com.anawat.dotography.exam.domain.task.TaskStatus;
 import com.anawat.dotography.exam.repository.ITaskRepository;
 
 @Component
@@ -23,6 +24,7 @@ public class TaskRepository implements ITaskRepository {
 	public List<Task> findAll() {
 			
 		Criteria criteria = factory.getCurrentSession().createCriteria(Task.class);
+		criteria.add(Restrictions.isNull("parentId"));
 		return criteria.list();
 	}
 
@@ -54,8 +56,28 @@ public class TaskRepository implements ITaskRepository {
 		
 	}
 
-	public Task save(Task entity) {
+	public Task save(Task entity) throws Exception {
+		
+		
+		
+		if(entity.getStatus()==null)
+		{
+			entity.setStatus(TaskStatus.Draft);
+		}
+		
 		Task data =findByKey(entity.getId());
+		if(entity.getStatus()==TaskStatus.Pending && data.getStatus()!= TaskStatus.Draft)
+		{
+			throw new Exception("Status is not correct");
+		}
+		if(entity.getStatus()==TaskStatus.Done && data.getStatus()!= TaskStatus.Pending)
+		{
+			throw new Exception("Status is not correct");
+		}
+		if(entity.getStatus()==TaskStatus.Done || entity.getStatus()==TaskStatus.Pending)
+		{
+			entity.setSubtasks(data.getSubtasks());
+		}
 		Task result = (Task) factory.getCurrentSession().merge(entity);
 		return result;
 		
