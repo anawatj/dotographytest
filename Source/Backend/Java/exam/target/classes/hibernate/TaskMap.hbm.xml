@@ -26,9 +26,9 @@
 		</property>
 		<property name="remark" column="remark" length="2000"></property>
 		<property name="taskDetail" column="task_detail" length="1000"></property>
-		<set name="subtasks" cascade="all-delete-orphan" lazy="true">
-				<key column="parent_task_id" foreign-key="fk_task_subtask"></key>
-				<one-to-many class="com.anawat.dotography.exam.domain.task.Task" not-found="ignore" />
+		<set name="items" cascade="all-delete-orphan" lazy="true">
+				<key column="task_id" foreign-key="fk_task_task_item"></key>
+				<one-to-many class="com.anawat.dotography.exam.domain.task.TaskItem" not-found="ignore" />
 				
 		</set>
 		<property name="createdBy" column="created_by" length="20"></property>
@@ -39,6 +39,7 @@
 		<property name="taskDate" column="task_date"></property>
 		<property name="assignDate" column="assign_date"></property>
 		<property name="finishDate" column="finish_date"></property>
+		
 		
 	</class>
 </hibernate-mapping>
