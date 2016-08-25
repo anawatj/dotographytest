@@ -1,4 +1,4 @@
-var app = angular.module('exam',[]);
+var app = angular.module('exam',['ngRoute']);
 app.controller('taskListCtrl',function($scope,$http)
 {
 		$scope.results=[];
@@ -61,15 +61,25 @@ app.controller('taskListCtrl',function($scope,$http)
 				});
 		};
 });
-app.controller('taskEntryCtrl',function($scope,$http)
+app.controller('taskEntryCtrl',function($scope,$http,$routeParams)
 {
 		$scope.model={};
 		$scope.init=function()
 		{
+				$http.get('http://localhost:8484/exam/task/tasks/'+$params.id)
+				.success(function(ret)
+				{
+						$scope.model=ret;
 
+				});
 		};
 		$scope.save=function()
 		{
+				for(var index=0;index<$scope.model.subtasks.length;index++)
+				{
+					var item = $scope.model.subtasks[index];
+					delete item.selected;
+				}
 				$http.post('http://localhost:8484/exam/task/save',$scope.model)
 				.success(function(ret)
 				{
@@ -94,5 +104,25 @@ app.controller('taskEntryCtrl',function($scope,$http)
 						alert(ret.message);
 						location.reload();
 				});
+		};
+		$scope.addItem=function()
+		{
+				var item = {};
+				item.id=0;
+				item.selected=false;
+				item.parentId=undefined;
+				$scope.model.subtasks.push(item);
+		};
+		$scope.removeItem=function()
+		{
+				for(var index=0;index<$scope.model.subtasks.length;index++)
+				{
+					var item = $scope.model.subtasks[index];
+					if(item.selected==true)
+					{
+						$scope.model.subtasks.splice(index,1);
+						index--;
+					}
+				}
 		};
 });

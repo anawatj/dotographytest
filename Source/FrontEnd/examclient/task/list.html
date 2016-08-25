@@ -2,11 +2,12 @@
 <html>
 <head>
 	<title>Task</title>
-	<link rel="stylesheet" type="text/css" href="./bootstrap/css/bootstrap.min.css">
-	<script type="text/javascript" src="./plugins/jQuery/jQuery-2.2.0.min.js"></script>
-	<script type="text/javascript" src="./bootstrap/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="./angular/angular.min.js"></script>
-	<script type="text/javascript" src="./task/app.js"></script>
+	<link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap.min.css">
+	<script type="text/javascript" src="../plugins/jQuery/jQuery-2.2.0.min.js"></script>
+	<script type="text/javascript" src="../bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="../angular/angular.min.js"></script>
+	<script type="text/javascript" src="../angular/angular-route.min.js"></script>
+	<script type="text/javascript" src="./app.js"></script>
 </head>
 <body ng-app="exam">
 		<div ng-controller="taskListCtrl" ng-init="init()">
@@ -32,7 +33,7 @@
 								<td>{{item.taskName}}</td>
 								<td>{{item.subject}}</td>
 								<td>{{item.taskDetail}}</td>
-								<td>{{item.taskDate | 'dd/MM/yyyy'}}</td>
+								<td>{{item.taskDate | date:'dd/MM/yyyy'}}</td>
 								<td>{{item.status}}</td>
 							</tr>
 						</tbody>
