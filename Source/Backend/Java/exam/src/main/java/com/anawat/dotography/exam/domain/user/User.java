@@ -1,7 +1,9 @@
 package com.anawat.dotography.exam.domain.user;
 
 import com.anawat.dotography.exam.domain.AbstractDomain;
-
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+@JsonInclude(Include.NON_NULL)
 public class User extends AbstractDomain<Integer> {
 
 	public User()
