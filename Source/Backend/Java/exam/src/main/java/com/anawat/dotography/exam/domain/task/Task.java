@@ -78,12 +78,28 @@ public class Task extends AbstractDomain<Integer> {
 		this.status = status;
 	}
 	public User getAssignee() {
+		if(this.assignee!=null)
+		{
+			if(this.assignee.getId()==null || this.assignee.getId()==0)
+			{
+				return null;
+			}
+		}
+
 		return assignee;
 	}
 	public void setAssignee(User assignee) {
 		this.assignee = assignee;
 	}
 	public User getAssigner() {
+		if(this.assigner!=null)
+		{
+			if(this.assigner.getId()==null || this.assigner.getId()==0)
+			{
+				return null;
+			}
+		}
+	
 		return assigner;
 	}
 	public void setAssigner(User assigner) {
