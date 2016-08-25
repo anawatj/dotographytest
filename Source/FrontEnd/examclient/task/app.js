@@ -1,4 +1,4 @@
-var app = angular.module('exam',['ngRoute']);
+var app = angular.module('exam',['ngRoute','ui.bootstrap']);
 app.factory('params',function()
 	{
 		var url =document.URL;
@@ -108,6 +108,7 @@ app.controller('taskEntryCtrl',function($scope,$http, params)
 						$scope.model.taskDate = new Date($scope.model.taskDate);
 						$scope.model.assignDate = new Date($scope.model.assignDate);
 						$scope.model.finishDate= new Date($scope.model.finishDate);
+
 						if($scope.model.items ==null || $scope.model.items==undefined)
 						{
 							$scope.model.items=[];
@@ -127,6 +128,11 @@ app.controller('taskEntryCtrl',function($scope,$http, params)
 					var item = $scope.model.items[index];
 					delete item.selected;
 				}
+				//$scope.model.assigner.id=1;
+				//$scope.model.assigner.username='tao';
+
+				//$scope.model.assignee.id=1;
+				//$scope.model.assignee.username='tao';
 				$http.post('http://localhost:8484/exam/task/save',$scope.model)
 				.success(function(ret)
 				{
@@ -171,5 +177,13 @@ app.controller('taskEntryCtrl',function($scope,$http, params)
 						index--;
 					}
 				}
+		};
+		$scope.findAssigner=function()
+		{
+
+		};
+		$scope.findAssignee=function()
+		{
+
 		};
 });
