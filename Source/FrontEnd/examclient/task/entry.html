@@ -74,16 +74,16 @@
 											
 											<tr>
 													<th><input type="checkbox" /></th>
-													<th>TaskName</th>
 													<th>Subject</th>
+													<th>Description</th>
 											</tr>
 										</thead>
 										<tbody>
 											<tr ng-repeat="item in model.items">
 												
 												<td><input type="checkbox" ng-model="item.selected"/></td>
-												<td><input type="text" class="form-control" ng-model="item.taskName"/></td>
-												<td><input type="text" class="form-control" ng-model="item.subject"/></td>
+												<td><input type="text" class="form-control" ng-model="item.itemSubject"/></td>
+												<td><input type="text" class="form-control" ng-model="item.itemDescription"/></td>
 											</tr>
 										</tbody>
 										<tfoot>

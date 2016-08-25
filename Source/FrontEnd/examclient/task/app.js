@@ -157,7 +157,7 @@ app.controller('taskEntryCtrl',function($scope,$http, params)
 				var item = {};
 				item.id=0;
 				item.selected=false;
-				item.parentId=undefined;
+				item.taskId=undefined;
 				$scope.model.items.push(item);
 		};
 		$scope.removeItem=function()
