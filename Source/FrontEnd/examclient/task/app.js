@@ -108,18 +108,23 @@ app.controller('taskEntryCtrl',function($scope,$http, params)
 						$scope.model.taskDate = new Date($scope.model.taskDate);
 						$scope.model.assignDate = new Date($scope.model.assignDate);
 						$scope.model.finishDate= new Date($scope.model.finishDate);
-						if($scope.model.subtasks ==null || $scope.model.subtasks==undefined)
+						if($scope.model.items ==null || $scope.model.items==undefined)
 						{
-							$scope.model.subtasks=[];
+							$scope.model.items=[];
+						}
+						for(var index=0;index<$scope.model.items.length;index++)
+						{
+							var item = $scope.model.items[index];
+							item..selected=false;
 						}
 
 				});
 		};
 		$scope.save=function()
 		{
-				for(var index=0;index<$scope.model.subtasks.length;index++)
+				for(var index=0;index<$scope.model.items.length;index++)
 				{
-					var item = $scope.model.subtasks[index];
+					var item = $scope.model.items[index];
 					delete item.selected;
 				}
 				$http.post('http://localhost:8484/exam/task/save',$scope.model)
@@ -153,16 +158,16 @@ app.controller('taskEntryCtrl',function($scope,$http, params)
 				item.id=0;
 				item.selected=false;
 				item.parentId=undefined;
-				$scope.model.subtasks.push(item);
+				$scope.model.items.push(item);
 		};
 		$scope.removeItem=function()
 		{
-				for(var index=0;index<$scope.model.subtasks.length;index++)
+				for(var index=0;index<$scope.model.items.length;index++)
 				{
-					var item = $scope.model.subtasks[index];
+					var item = $scope.model.items[index];
 					if(item.selected==true)
 					{
-						$scope.model.subtasks.splice(index,1);
+						$scope.model.items.splice(index,1);
 						index--;
 					}
 				}
