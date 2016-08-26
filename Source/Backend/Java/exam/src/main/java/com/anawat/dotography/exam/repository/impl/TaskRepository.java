@@ -6,7 +6,10 @@ import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.FetchMode;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.transform.ResultTransformer;
+import org.hibernate.transform.Transformers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -27,6 +30,11 @@ public class TaskRepository implements ITaskRepository {
 		Criteria criteria = factory.getCurrentSession().createCriteria(Task.class);
 		criteria.setFetchMode("assigner",FetchMode.JOIN);
 		criteria.setFetchMode("assignee",FetchMode.JOIN);
+		
+		
+		criteria.setResultTransformer(Criteria.ROOT_ENTITY);
+
+		
 		return criteria.list();
 	}
 
@@ -37,7 +45,7 @@ public class TaskRepository implements ITaskRepository {
 		criteria.setFetchMode("assignee",FetchMode.JOIN);
 		criteria.setFetchMode("items",FetchMode.JOIN);	
 		criteria.add(Restrictions.eq("id",id));
-		
+		criteria.setResultTransformer(Criteria.ROOT_ENTITY);
 		
 		List<Task> result = criteria.list();
 		if(result!=null && result.size()>0)
