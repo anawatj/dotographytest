@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+		<class name="com.anawat.dotography.exam.domain.task.TaskItem" table="tbl_t_task_item" schema="dotography">
+				<id name="id" column="id" type="integer">
+						<generator class="sequence">
+								<param name="sequence">dotography.tbl_t_task_item_seq</param>
+						</generator>
+				</id>
+				<version name="version" column="version"></version>
+				<property name="itemSubject" column="item_subject" length="100"></property>
+				<property name="itemDescription" column="item_description" length="1000"></property>
+				<property name="taskId" column="task_id"></property>
+				
+						<property name="createdBy" column="created_by" length="20"></property>
+		<property name="createdDate" column="created_date"></property>
+		<property name="updatedBy" column="updated_by" length="20"></property>
+		<property name="updatedDate" column="updated_date"></property>
+		</class>
+</hibernate-mapping>
