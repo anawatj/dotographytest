@@ -21,14 +21,20 @@ public class TaskRepository implements ITaskRepository {
 	@Autowired
 	private SessionFactory factory;
 
+	@SuppressWarnings("unchecked")
 	public List<Task> findAll() {
 			
 		Criteria criteria = factory.getCurrentSession().createCriteria(Task.class);
+		criteria.setFetchMode("assigner",FetchMode.JOIN);
+		criteria.setFetchMode("assignee",FetchMode.JOIN);
 		return criteria.list();
 	}
 
+	@SuppressWarnings("unchecked")
 	public Task findByKey(Integer id) {
 		Criteria criteria =factory.getCurrentSession().createCriteria(Task.class);
+		criteria.setFetchMode("assigner",FetchMode.JOIN);
+		criteria.setFetchMode("assignee",FetchMode.JOIN);
 		criteria.setFetchMode("items",FetchMode.JOIN);	
 		criteria.add(Restrictions.eq("id",id));
 		
