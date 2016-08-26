@@ -12,7 +12,12 @@ import com.fasterxml.jackson.datatype.hibernate4.Hibernate4Module;
 @Component
 public class HibernateAwareObjectMapper extends ObjectMapper {
 
-    public HibernateAwareObjectMapper() {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public HibernateAwareObjectMapper() {
         registerModule(new Hibernate4Module());
         SimpleFilterProvider filters = new SimpleFilterProvider();
         filters.setFailOnUnknownId(false);
