@@ -30,10 +30,7 @@ public class TaskRepository implements ITaskRepository {
 
 	public Task findByKey(Integer id) {
 		Criteria criteria =factory.getCurrentSession().createCriteria(Task.class);
-		criteria.setFetchMode("assignee", FetchMode.JOIN);
-		criteria.setFetchMode("assigner",FetchMode.JOIN);
-		criteria.setFetchMode("items",FetchMode.JOIN);
-		
+		criteria.setFetchMode("items",FetchMode.JOIN);	
 		criteria.add(Restrictions.eq("id",id));
 		
 		
